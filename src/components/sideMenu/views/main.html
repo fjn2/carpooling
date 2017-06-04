@@ -1,0 +1,35 @@
+<div layout="column" layout-fill>
+  <md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Menu" ng-click="vm.toggleMenu()">
+        <md-icon class="fa fa-bars fa-2x" aria-hidden="true"></md-icon>
+      </md-button>
+      <h2 flex md-truncate>Your car pooling application</h2>
+    </div>
+  </md-toolbar>
+
+  <md-sidenav md-component-id="sideNavMenu">
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Welcome Javi Esses</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+      <md-list flex>
+        <md-list-item class="md-3-line">
+          <div class="md-list-item-text" layout="column" ng-click="vm.goTo('app.carPoolList')">
+            <h3>Car pooling list</h3>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line">
+          <div class="md-list-item-text" layout="column" ng-click="vm.goTo('app.settings')">
+            <h3>Settings</h3>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+
+  <md-content>
+    <div ui-view></div>
+  </md-content>
+</div>
