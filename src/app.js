@@ -12,6 +12,7 @@ const angular = require('angular');
 const app = angular.module('app', [
   'ui.router',
   'ngMaterial',
+  require('./components/login')(),
   require('./components/sideMenu')(),
   require('./components/carPool')(),
   require('./components/settings')(),
