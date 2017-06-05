@@ -4,7 +4,7 @@ const moduleName = 'sideMenu';
 
 
 module.exports = () => {
-  const mod = angular.module(moduleName, ['ui.router']);
+  const mod = angular.module(moduleName, []);
 
   mod.config(['$stateProvider', ($stateProvider) => {
     $stateProvider.state('app', {

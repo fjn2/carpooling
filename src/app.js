@@ -14,13 +14,13 @@ const app = angular.module('app', [
   'ngMaterial',
   require('./components/sideMenu')(),
   require('./components/carPool')(),
+  require('./components/settings')(),
 ]);
 
 app.config(['$urlRouterProvider', ($urlRouterProvider) => {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/carPoolList');
 }]);
 app.run(['$state', ($state) => {
-  console.log('$state going to app');
   $state.go('app.carPool');
 }]);
 

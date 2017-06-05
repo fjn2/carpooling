@@ -1,0 +1,22 @@
+<md-content layout-padding>
+  <form name="settingsForm">
+    <md-input-container class="md-block">
+      <label>Nombre</label>
+      <input md-maxlength="30" required md-no-asterisk name="nickname" ng-model="vm.nickname">
+      <div ng-messages="settingsForm.nickname.$error">
+        <div ng-message="required">Este campo es requerido.</div>
+        <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label>Mail</label>
+      <input md-maxlength="30" required md-no-asterisk name="mail" ng-model="vm.mail" type="email">
+      <div ng-messages="settingsForm.mail.$error">
+        <div ng-message="required">Este campo es requerido.</div>
+      </div>
+    </md-input-container>
+    <div layout="row" layout-sm="column" layout-align="center">
+      <md-button flex="100" class="md-raised md-primary">Guardar</md-button>
+    </div>
+  </form>
+ </md-content>

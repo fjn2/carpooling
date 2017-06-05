@@ -2,7 +2,11 @@
   "extends": "airbnb",
   "globals": {
     "window": true,
-    "__dirname": true,
     "require": true,
+    "__dirname": true,
+  },
+  "rules": {
+    "global-require": "off",
+    "func-names": "off",
   }
 }
