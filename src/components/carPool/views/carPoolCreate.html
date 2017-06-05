@@ -15,8 +15,18 @@
         <div ng-message="required">Este campo es requerido.</div>
       </div>
     </md-input-container>
+    <md-input-container class="md-block">
+      <label>¿Lugares disponibles?</label>
+      <input md-maxlength="30" required md-no-asterisk name="source" ng-model="vm.availablePlaces" type="number">
+      <div ng-messages="createPoolForm.availablePlaces.$error">
+        <div ng-message="required">Este campo es requerido.</div>
+      </div>
+    </md-input-container>
     <div layout="row" layout-sm="column" layout-align="center">
       <md-button flex="100" class="md-raised md-primary">Guardar</md-button>
+    </div>
+    <div layout="row" layout-sm="column" layout-align="center" ng-click="vm.showConfirm()">
+      <md-button flex="100" class="md-raised md-warn">Eliminar</md-button>
     </div>
   </form>
  </md-content>

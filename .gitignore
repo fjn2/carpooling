@@ -2,3 +2,4 @@ node_modules
 cordova/www
 cordova/platforms
 cordova/plugins
+npm-debug.log

@@ -10,11 +10,15 @@
       <h4>Quedan {{ item.availablePlaces }} lugares</h4>
       <p>{{ item.when }}</p>
     </div>
-    <md-button class="md-fab md-mini md-warn" aria-hidden="true" ng-if="item.added">
+    <md-button class="md-fab md-mini md-warn" aria-hidden="true" ng-if="item.added && !item.admin" ng-click="vm.removeToTrip()">
         <md-icon aria-hidden="true" class="fa fa-minus"></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini md-primary" aria-hidden="true" ng-if="!item.added">
+    <md-button class="md-fab md-mini md-primary" aria-hidden="true" ng-if="!item.added && !item.admin" ng-click="vm.addToTrip()">
         <md-icon aria-hidden="true" class="fa fa-plus"></md-icon>
     </md-button>
+    <md-button class="md-fab md-mini md-primary edit" aria-hidden="true" ng-if="item.admin">
+        <md-icon aria-hidden="true" class="fa fa-pencil"></md-icon>
+    </md-button>
+
   </md-list-item>
 </div>
