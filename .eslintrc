@@ -4,6 +4,7 @@
     "window": true,
     "require": true,
     "__dirname": true,
+    "cordova": true,
   },
   "rules": {
     "global-require": "off",

@@ -1,32 +1,43 @@
 <md-content layout-padding>
   <form name="createPoolForm">
     <md-input-container class="md-block">
+      <label>Caracteristicas del vehículo</label>
+      <input md-maxlength="30" required md-no-asterisk name="car_identification" ng-model="vm.car_identification" type="text">
+      <div ng-messages="createPoolForm.car_identification.$error">
+        <div ng-message="required">Este campo es requerido.</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
       <label>¿Cuando?</label>
-      <md-datepicker name="when" md-min-date="vm.minDate" md-max-date="vm.maxDate" ng-model="vm.when"></md-datepicker>
+      <input type="datetime-local" name="date_time" ng-model="vm.date_time" md-min-date="vm.minDate" md-max-date="vm.maxDate" required />
+      <div ng-messages="createPoolForm.date_time.$error">
+        <div ng-message="required">Este campo es requerido.</div>
+      </div>
     </md-input-container>
     <md-input-container class="md-block">
-      <input type="time" name="time" ng-model="vm.time"
-       placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required />
+      <md-switch md-invert class="md-primary" md-no-ink aria-label="Salis de Abril" ng-model="vm.from_to" ng-true-value="'FROM'" ng-false-value="'TO'">
+        ¿Salis de Abril?
+      </md-switch>
     </md-input-container>
     <md-input-container class="md-block">
-      <label>¿Donde / Hacia?</label>
-      <input md-maxlength="30" required md-no-asterisk name="source" ng-model="vm.source" type="text">
-      <div ng-messages="createPoolForm.source.$error">
+      <label>{{vm.descriptionLabel}}</label>
+      <input md-maxlength="30" required md-no-asterisk name="description" ng-model="vm.description" type="text">
+      <div ng-messages="createPoolForm.description.$error">
         <div ng-message="required">Este campo es requerido.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
       <label>¿Lugares disponibles?</label>
-      <input md-maxlength="30" required md-no-asterisk name="source" ng-model="vm.availablePlaces" type="number">
-      <div ng-messages="createPoolForm.availablePlaces.$error">
+      <input required md-no-asterisk name="total_seats" ng-model="vm.total_seats" type="number" ng-min="0" ng-max="20">
+      <div ng-messages="createPoolForm.total_seats.$error">
         <div ng-message="required">Este campo es requerido.</div>
       </div>
     </md-input-container>
     <div layout="row" layout-sm="column" layout-align="center">
-      <md-button flex="100" class="md-raised md-primary">Guardar</md-button>
+      <md-button flex="100" class="md-raised md-primary" ng-click="vm.save()" ng-disabled="createPoolForm.$invalid">Guardar</md-button>
     </div>
-    <div layout="row" layout-sm="column" layout-align="center" ng-click="vm.showConfirm()">
-      <md-button flex="100" class="md-raised md-warn">Eliminar</md-button>
+    <div layout="row" layout-sm="column" layout-align="center">
+      <md-button flex="100" ng-show="!vm.newEntry" class="md-raised md-warn" ng-click="vm.delete()">Eliminar</md-button>
     </div>
   </form>
  </md-content>

@@ -2,10 +2,14 @@ const angular = require('angular');
 
 const moduleName = 'sideMenu';
 
+const mod = angular.module(moduleName, []);
+
+require('./styles/main.scss');
+
+require('./services/loadingSvc.js')(mod);
+require('./services/deviceIdInterceptor.js')(mod);
 
 module.exports = () => {
-  const mod = angular.module(moduleName, []);
-
   mod.config(['$stateProvider', ($stateProvider) => {
     $stateProvider.state('app', {
       template: require('./views/main.html'),

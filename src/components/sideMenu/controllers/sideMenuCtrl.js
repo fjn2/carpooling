@@ -1,7 +1,7 @@
 const controllerName = 'sideMenuCtrl';
 
 module.exports = (mod) => {
-  mod.controller(controllerName, ['$mdSidenav', '$log', '$state', function ($mdSidenav, $log, $state) {
+  mod.controller(controllerName, ['$mdSidenav', '$log', '$state', 'loadingSvc', 'loginSvc', function ($mdSidenav, $log, $state, loadingSvc, loginSvc) {
     this.toggleMenu = () => {
       $mdSidenav('sideNavMenu')
         .toggle()
@@ -13,6 +13,9 @@ module.exports = (mod) => {
       $state.go(state);
       this.toggleMenu();
     };
+
+    this.user = loginSvc.getCurrentUser();
+    this.loading = loadingSvc;
   }]);
   return controllerName;
 };

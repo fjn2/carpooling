@@ -16,40 +16,39 @@ const app = angular.module('app', [
   require('./components/sideMenu')(),
   require('./components/carPool')(),
   require('./components/settings')(),
+  require('./components/user')(),
 ]);
 
+app.constant('configuration', {
+  host: 'http://54.173.70.135:8081',
+  testDeviceId: '12345',
+});
+
 app.config(['$urlRouterProvider', ($urlRouterProvider) => {
-  $urlRouterProvider.otherwise('/carPoolList');
+  $urlRouterProvider.otherwise('/login');
 }]);
-app.run(['$state', ($state) => {
-  $state.go('app.carPool');
+app.run(['$state', 'loginSvc', ($state, loginSvc) => {
+  loginSvc.checkForloggedUser().then(() => {
+    $state.go('app.carPoolList');
+  }, () => {
+    $state.go('login');
+  });
 }]);
 
-// var app = {
-//     // Application Constructor
-//     initialize: function() {
-//         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-//     },
 
-//     // deviceready Event Handler
-//     //
-//     // Bind any cordova events here. Common events are:
-//     // 'pause', 'resume', etc.
-//     onDeviceReady: function() {
-//         this.receivedEvent('deviceready');
-//     },
+document.addEventListener("deviceready", onDeviceReady, false);
 
-//     // Update DOM on a Received Event
-//     receivedEvent: function(id) {
-//         var parentElement = document.getElementById(id);
-//         var listeningElement = parentElement.querySelector('.listening');
-//         var receivedElement = parentElement.querySelector('.received');
+function onDeviceReady() {
+  console.log('deviceready');
+  app.constant('device', {
+    uuid: (typeof cordova !== 'undefined') ? device.uuid : '12345',
+  });
+  angular.bootstrap(window.document, ['app']);
+}
 
-//         listeningElement.setAttribute('style', 'display:none;');
-//         receivedElement.setAttribute('style', 'display:block;');
 
-//         console.log('Received Event: ' + id);
-//     }
-// };
-
-// app.initialize();
+setTimeout(() => {
+  if (typeof cordova === 'undefined') {
+    onDeviceReady();
+  }
+});

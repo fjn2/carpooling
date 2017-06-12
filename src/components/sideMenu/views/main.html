@@ -4,13 +4,13 @@
       <md-button class="md-icon-button" aria-label="Menu" ng-click="vm.toggleMenu()">
         <md-icon class="fa fa-bars fa-2x" aria-hidden="true"></md-icon>
       </md-button>
-      <h2 flex md-truncate>Abril</h2>
+      <h2 flex md-truncate>Car pooling - Abril</h2>
     </div>
   </md-toolbar>
-
+  <md-progress-linear class="progress-bar" ng-show="vm.loading.getState()" md-mode="indeterminate"></md-progress-linear>
   <md-sidenav md-component-id="sideNavMenu">
     <md-toolbar class="md-theme-indigo">
-      <h1 class="md-toolbar-tools">Bienvenido Javi Esses</h1>
+      <h1 class="md-toolbar-tools">Bienvenido {{vm.user.username}}</h1>
     </md-toolbar>
     <md-content layout-padding>
       <md-list flex>
@@ -26,12 +26,18 @@
           </div>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item ng-click="vm.goTo('app.settings')">
+        <md-list-item ng-click="vm.goTo('app.user')">
           <div class="md-list-item-text" layout="column">
-            <h3>Settings</h3>
+            <h3>Perfil</h3>
           </div>
         </md-list-item>
         <md-divider></md-divider>
+        <!-- <md-list-item ng-click="vm.goTo('app.settings')">
+          <div class="md-list-item-text" layout="column">
+            <h3>Configuración</h3>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider> -->
         <md-list-item ng-click="vm.goTo('login')">
           <div class="md-list-item-text" layout="column">
             <h3>Salir</h3>

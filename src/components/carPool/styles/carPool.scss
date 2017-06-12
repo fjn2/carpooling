@@ -2,6 +2,10 @@
   md-list-item {
     padding-right: 0;
 
+    &.out-coming {
+      background: lightcyan;
+    }
+
     button {
       &.md-primary {
         &.edit {

@@ -8,6 +8,8 @@ require('./styles/carPool.scss');
 require('./controllers/carPoolListCtrl.js')(mod);
 require('./controllers/carPoolCreateCtrl.js')(mod);
 
+require('./services/carPolSvc.js')(mod);
+
 mod.config(['$stateProvider', ($stateProvider) => {
   $stateProvider.state('app.carPoolList', {
     url: '/carPoolList',
@@ -16,7 +18,10 @@ mod.config(['$stateProvider', ($stateProvider) => {
     controllerAs: 'vm',
   });
   $stateProvider.state('app.carPoolCreate', {
-    url: '/carPoolList',
+    url: '/carPoolCreate',
+    params: {
+      journey: undefined,
+    },
     template: require('./views/carPoolCreate.html'),
     controller: 'carPoolCreateCtrl',
     controllerAs: 'vm',

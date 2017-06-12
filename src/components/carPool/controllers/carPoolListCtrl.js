@@ -1,18 +1,9 @@
 const controllerName = 'carPoolListCtrl';
 
 module.exports = function (mod) {
-  mod.controller(controllerName, ['$mdDialog', function ($mdDialog) {
-    this.carTrips = [];
-    for (let i = 0; i < 30; i += 1) {
-      this.carTrips.push({
-        when: '5 / 12 / 2017 18:00 (en 15\')',
-        destination: 'Quilmes',
-        availablePlaces: 3,
-        driverName: 'Katana',
-        added: !!Math.round(Math.random()),
-        admin: !!Math.round(Math.random()),
-      });
-    }
+  mod.controller(controllerName, ['$mdDialog', 'carPolSvc', 'loadingSvc', '$state', function ($mdDialog, carPolSvc, loadingSvc, $state) {
+    this.journeys = [];
+
     this.addToTrip = (ev) => {
       // Appending dialog to document.body to cover sidenav in docs app
       const confirm = $mdDialog.confirm()
@@ -43,6 +34,17 @@ module.exports = function (mod) {
         // do nothing
       });
     };
+    this.editTrip = (journey) => {
+      $state.go('app.carPoolCreate', {
+        journey,
+      });
+    };
+    loadingSvc.show();
+    carPolSvc.get().then((journey) => {
+      this.journeys = this.journeys.concat(journey);
+    }).finally(() => {
+      loadingSvc.hide();
+    });
   }]);
   return controllerName;
 };
