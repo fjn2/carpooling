@@ -1,7 +1,7 @@
 const controllerName = 'sideMenuCtrl';
 
 module.exports = (mod) => {
-  mod.controller(controllerName, ['$mdSidenav', '$log', '$state', 'loadingSvc', 'loginSvc', '$scope', function ($mdSidenav, $log, $state, loadingSvc, loginSvc, $scope) {
+  mod.controller(controllerName, ['$mdSidenav', '$log', '$state', 'loadingSvc', 'loginSvc', '$scope', '$mdDialog', function ($mdSidenav, $log, $state, loadingSvc, loginSvc, $scope, $mdDialog) {
     this.toggleMenu = () => {
       $mdSidenav('sideNavMenu')
         .toggle()
@@ -15,8 +15,18 @@ module.exports = (mod) => {
       this.toggleMenu();
     };
     this.logout = () => {
-      loginSvc.logout();
-      this.goTo('login');
+      const confirm = $mdDialog.confirm()
+        .title('Estas por salir de la applicación')
+        .textContent('Si lo haces, tu usuario será desactivado y tendras que pedir acceso para entrar nuevamente')
+        .ariaLabel('Salir')
+        .ok('Salir')
+        .cancel('Cancelar');
+      $mdDialog.show(confirm).then(() => {
+        loginSvc.logout();
+        this.goTo('login');
+      }, () => {
+        // do nothing
+      });
     };
     this.state = $state;
     this.user = loginSvc.getCurrentUser();
@@ -35,6 +45,9 @@ module.exports = (mod) => {
           break;
         case 'app.user':
           this.sectionName = 'Perfil';
+          break;
+        case 'app.contactUs':
+          this.sectionName = 'Contacto';
           break;
         default:
           this.sectionName = 'Car pool app';

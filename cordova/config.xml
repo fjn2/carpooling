@@ -12,6 +12,7 @@
 
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="SplashScreenBackgroundColor" value="#000000" />
 
     <access origin="*" />
     <allow-intent href="http://*/*" />

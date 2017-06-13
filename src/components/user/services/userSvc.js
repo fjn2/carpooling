@@ -1,8 +1,7 @@
 const serviceName = 'userSvc';
-const loginUrl = '/user/login';
 
 module.exports = function (mod) {
-  mod.factory(serviceName, ['$http', 'configuration', function ($http, configuration) {
+  mod.factory(serviceName, ['$http', 'configuration', 'device', function ($http, configuration, device) {
     const update = ({
       _id,
       username,
@@ -28,6 +27,7 @@ module.exports = function (mod) {
         mail,
         phone,
         neighborhood,
+        device: device.uuid,
       })
     );
     return {

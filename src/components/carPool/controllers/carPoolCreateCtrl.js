@@ -18,7 +18,7 @@ module.exports = function (mod) {
       Object.assign(this, {
         car_identification: $stateParams.journey.car_identification,
         description: $stateParams.journey.description,
-        from_to: $stateParams.journey.from_top,
+        from_to: $stateParams.journey.from_to,
         total_seats: $stateParams.journey.total_seats,
         date_time: new Date($stateParams.journey.date_time),
         _id: $stateParams.journey._id,

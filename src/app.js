@@ -10,6 +10,7 @@ require('font-awesome/css/font-awesome.css');
 
 const applicationStartTime = new Date();
 const splashScreenTime = 2000;
+const testDeviceId = '12345';
 
 const angular = require('angular');
 const app = angular.module('app', [
@@ -24,7 +25,7 @@ const app = angular.module('app', [
 
 app.constant('configuration', {
   host: 'http://54.173.70.135:8081',
-  testDeviceId: '12345',
+  testDeviceId,
 });
 
 app.config(['$urlRouterProvider', ($urlRouterProvider) => {
@@ -38,8 +39,9 @@ app.run(['$state', 'loginSvc', ($state, loginSvc) => {
   }).finally(() => {
     if (window.navigator.splashscreen) {
       setTimeout(() => {
+        console.log('Hiding SplashScreen');
         window.navigator.splashscreen.hide();
-      }, splashScreenTime - new Date() - applicationStartTime);
+      }, splashScreenTime - (new Date() - applicationStartTime));
     } else {
       console.log('SplashScreen plugin doesn\' exists');
     }
@@ -49,7 +51,7 @@ app.run(['$state', 'loginSvc', ($state, loginSvc) => {
 function onDeviceReady() {
   console.log('deviceready');
   app.constant('device', {
-    uuid: (typeof cordova !== 'undefined') ? device.uuid : '12345',
+    uuid: (typeof cordova !== 'undefined') ? device.uuid : testDeviceId,
     // uuid: 'sdfsdfsdf',
   });
   angular.bootstrap(window.document, ['app']);

@@ -9,6 +9,8 @@ require('./styles/main.scss');
 require('./services/loadingSvc.js')(mod);
 require('./services/deviceIdInterceptor.js')(mod);
 
+require('./controllers/sideMenuCtrl.js')(mod);
+
 module.exports = () => {
   mod.config(['$stateProvider', ($stateProvider) => {
     $stateProvider.state('app', {
@@ -16,13 +18,11 @@ module.exports = () => {
       controller: 'sideMenuCtrl',
       controllerAs: 'vm',
     });
+    $stateProvider.state('app.contactUs', {
+      template: require('./views/contactUs.html'),
+    });
   }]);
 
-  mod.run(() => {
-
-  });
-
-  require('./controllers/sideMenuCtrl.js')(mod);
 
   return mod.name;
 };

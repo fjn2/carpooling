@@ -14,12 +14,12 @@ module.exports = function (mod) {
       }
       diff /= 60;
       if (diff < 60) { // minutes
-        return `(en ${Math.floor(diff)})`;
+        return `(en ${Math.floor(diff)}')`;
       }
       diff /= 60;
       if (diff < 24) { // hours
         const minutes = (diff % 1) * 60;
-        return `(en ${Math.floor(diff)}:${Math.floor(minutes)})`;
+        return `(en ${Math.floor(diff)}hs ${Math.floor(minutes)}')`;
       }
       return '(+24 hs)';
     }
@@ -28,7 +28,7 @@ module.exports = function (mod) {
       $http.get(`${configuration.host}/journey`).then((resp) => {
         const journeries = resp.data.map(({ car_identification, description, from_to, driver, date_time, free_seats, total_seats, users, _id }) => {
           const journeyTime = new Date(date_time);
-          let when = `${journeyTime.getDate()} / ${journeyTime.getMonth() + 1} / ${journeyTime.getFullYear()} ${journeyTime.getHours()}:${journeyTime.getMinutes()} `;
+          let when = `${journeyTime.getDate()} / ${journeyTime.getMonth() + 1} / ${journeyTime.getFullYear()} ${journeyTime.getHours()}:${('0' + journeyTime.getMinutes()).slice(-2)} `;
 
           when += getPendingTime(journeyTime);
 
