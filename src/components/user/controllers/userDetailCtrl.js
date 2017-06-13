@@ -1,7 +1,7 @@
 const controllerName = 'userDetailCtrl';
 
 module.exports = function (mod) {
-  mod.controller(controllerName, ['loginSvc', '$scope', '$mdDialog', 'userSvc', function (loginSvc, $scope, $mdDialog, userSvc) {
+  mod.controller(controllerName, ['loginSvc', '$scope', '$mdDialog', 'userSvc', '$state', function (loginSvc, $scope, $mdDialog, userSvc, $state) {
     let {
       _id,
       username,
@@ -30,9 +30,34 @@ module.exports = function (mod) {
       }, () => {
         // error in server
       });
-
-      console.log($scope);
     };
+    this.create = () => {
+      userSvc.create(this).then(() => {
+        const alert = $mdDialog.alert()
+          .title('Operación exitosa')
+          .textContent('Enviamos tus datos a nuestros moderadores los cuales certificaran los datos ingresados y te darán aceso a la applicacion lo antes posible.')
+          .ariaLabel('Aceptar')
+          .ok('Aceptar');
+
+        $mdDialog.show(alert).then(() => {
+          $state.go('login');
+        });
+      });
+    };
+    this.cancel = () => {
+      $state.go('login');
+    }
+    if ($state.current.name !== 'createUser') {
+      // update
+      this.actionButton = this.update;
+      this.buttonLabel = 'Actualizar';
+      this.showCancelButton = false;
+    } else {
+      // new user
+      this.actionButton = this.create;
+      this.buttonLabel = 'Solicitar';
+      this.showCancelButton = true;
+    }
   }]);
   return controllerName;
 };

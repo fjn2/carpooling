@@ -1,7 +1,7 @@
 const controllerName = 'carPoolCreateCtrl';
 
 module.exports = function (mod) {
-  mod.controller(controllerName, ['$mdDialog', '$stateParams', 'carPolSvc', '$scope', 'loadingSvc', function ($mdDialog, $stateParams, carPolSvc, $scope, loadingSvc) {
+  mod.controller(controllerName, ['$mdDialog', '$stateParams', 'carPolSvc', '$scope', 'loadingSvc', '$state', function ($mdDialog, $stateParams, carPolSvc, $scope, loadingSvc, $state) {
     this.minDate = new Date();
     this.time = new Date();
     this.maxDate = new Date(
@@ -36,7 +36,17 @@ module.exports = function (mod) {
         $mdDialog.show(confirm).then(() => {
           loadingSvc.show();
 
-          carPolSvc.saveJourney(this).finally(() => {
+          carPolSvc.saveJourney(this).then(() => {
+            const alert = $mdDialog.alert()
+              .title('Operación exitosa')
+              .textContent('Se creó el viaje de forma exitosa')
+              .ariaLabel('Aceptar')
+              .ok('Aceptar');
+
+            $mdDialog.show(alert).then(() => {
+              $state.go('app.carPoolList');
+            });
+          }).finally(() => {
             loadingSvc.hide();
           });
         }, () => {
@@ -52,7 +62,17 @@ module.exports = function (mod) {
         $mdDialog.show(confirm).then(() => {
           loadingSvc.show();
 
-          carPolSvc.updateJourney(this).finally(() => {
+          carPolSvc.updateJourney(this).then(() => {
+            const alert = $mdDialog.alert()
+              .title('Operación exitosa')
+              .textContent('Se modificó el viaje de forma exitosa')
+              .ariaLabel('Aceptar')
+              .ok('Aceptar');
+
+            $mdDialog.show(alert).then(() => {
+              $state.go('app.carPoolList');
+            });
+          }).finally(() => {
             loadingSvc.hide();
           });
         }, () => {

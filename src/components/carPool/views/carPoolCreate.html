@@ -9,7 +9,7 @@
     </md-input-container>
     <md-input-container class="md-block">
       <label>¿Cuando?</label>
-      <input type="datetime-local" name="date_time" ng-model="vm.date_time" md-min-date="vm.minDate" md-max-date="vm.maxDate" required />
+      <input type="datetime-local" name="date_time" ng-model="vm.date_time" min="{{vm.minDate | date:'yyyy-MM-ddTHH:mm:ss'}}" max="{{vm.maxDate | date:'yyyy-MM-ddTHH:mm:ss'}}" required />
       <div ng-messages="createPoolForm.date_time.$error">
         <div ng-message="required">Este campo es requerido.</div>
       </div>

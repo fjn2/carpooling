@@ -8,6 +8,9 @@ require('angular-material/angular-material.min.css');
 
 require('font-awesome/css/font-awesome.css');
 
+const applicationStartTime = new Date();
+const splashScreenTime = 2000;
+
 const angular = require('angular');
 const app = angular.module('app', [
   'ui.router',
@@ -32,20 +35,27 @@ app.run(['$state', 'loginSvc', ($state, loginSvc) => {
     $state.go('app.carPoolList');
   }, () => {
     $state.go('login');
+  }).finally(() => {
+    if (window.navigator.splashscreen) {
+      setTimeout(() => {
+        window.navigator.splashscreen.hide();
+      }, splashScreenTime - new Date() - applicationStartTime);
+    } else {
+      console.log('SplashScreen plugin doesn\' exists');
+    }
   });
 }]);
-
-
-document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
   console.log('deviceready');
   app.constant('device', {
     uuid: (typeof cordova !== 'undefined') ? device.uuid : '12345',
+    // uuid: 'sdfsdfsdf',
   });
   angular.bootstrap(window.document, ['app']);
 }
 
+window.document.addEventListener('deviceready', onDeviceReady, false);
 
 setTimeout(() => {
   if (typeof cordova === 'undefined') {

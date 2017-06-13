@@ -7,6 +7,7 @@ const mod = angular.module(moduleName, []);
 require('./styles/carPool.scss');
 require('./controllers/carPoolListCtrl.js')(mod);
 require('./controllers/carPoolCreateCtrl.js')(mod);
+require('./controllers/myJourneysCtrl.js')(mod);
 
 require('./services/carPolSvc.js')(mod);
 
@@ -26,6 +27,13 @@ mod.config(['$stateProvider', ($stateProvider) => {
     controller: 'carPoolCreateCtrl',
     controllerAs: 'vm',
   });
+  $stateProvider.state('app.myJourneys', {
+    url: '/myJourneys',
+    template: require('./views/carPoolList.html'),
+    controller: 'myJourneysCtrl',
+    controllerAs: 'vm',
+  });
+
 }]);
 
 module.exports = () => mod.name;

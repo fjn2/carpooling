@@ -6,3 +6,12 @@
   z-index: 999;
   bottom: 0;
 }
+md-sidenav {
+  .current {
+    background: lavender;
+  }
+}
+md-content.loading {
+  filter: blur(5px);
+  pointer-events: none;
+}

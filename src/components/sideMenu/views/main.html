@@ -4,7 +4,7 @@
       <md-button class="md-icon-button" aria-label="Menu" ng-click="vm.toggleMenu()">
         <md-icon class="fa fa-bars fa-2x" aria-hidden="true"></md-icon>
       </md-button>
-      <h2 flex md-truncate>Car pooling - Abril</h2>
+      <h2 flex md-truncate>Abril - {{vm.sectionName}}</h2>
     </div>
   </md-toolbar>
   <md-progress-linear class="progress-bar" ng-show="vm.loading.getState()" md-mode="indeterminate"></md-progress-linear>
@@ -14,19 +14,25 @@
     </md-toolbar>
     <md-content layout-padding>
       <md-list flex>
-        <md-list-item ng-click="vm.goTo('app.carPoolList')">
+        <md-list-item ng-click="vm.goTo('app.carPoolList')" ng-class="{current: vm.state.current.name == 'app.carPoolList'}">
           <div class="md-list-item-text" layout="column" >
             <h3>Viajes disponibles</h3>
           </div>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item ng-click="vm.goTo('app.carPoolCreate')">
+        <md-list-item ng-click="vm.goTo('app.myJourneys')" ng-class="{current: vm.state.current.name == 'app.myJourneys'}">
+          <div class="md-list-item-text" layout="column" >
+            <h3>Mis viajes</h3>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="vm.goTo('app.carPoolCreate')" ng-class="{current: vm.state.current.name == 'app.carPoolCreate'}">
           <div class="md-list-item-text" layout="column">
             <h3>Crear viaje</h3>
           </div>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item ng-click="vm.goTo('app.user')">
+        <md-list-item ng-click="vm.goTo('app.user')" ng-class="{current: vm.state.current.name == 'app.user'}">
           <div class="md-list-item-text" layout="column">
             <h3>Perfil</h3>
           </div>
@@ -38,7 +44,7 @@
           </div>
         </md-list-item>
         <md-divider></md-divider> -->
-        <md-list-item ng-click="vm.goTo('login')">
+        <md-list-item ng-click="vm.logout()">
           <div class="md-list-item-text" layout="column">
             <h3>Salir</h3>
           </div>
@@ -48,7 +54,7 @@
     </md-content>
   </md-sidenav>
 
-  <md-content>
+  <md-content ng-class="{'loading': !!vm.loading.getState()}">
     <div ui-view></div>
   </md-content>
 </div>

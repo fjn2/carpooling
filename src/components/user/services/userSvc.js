@@ -17,8 +17,22 @@ module.exports = function (mod) {
         neighborhood,
       })
     );
+    const create = ({
+      username,
+      mail,
+      phone,
+      neighborhood,
+    }) => (
+      $http.post(`${configuration.host}/user`, {
+        username,
+        mail,
+        phone,
+        neighborhood,
+      })
+    );
     return {
       update,
+      create,
     };
   }]);
   return serviceName;

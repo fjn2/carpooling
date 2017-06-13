@@ -7,18 +7,18 @@
       aria-hidden="true"
       class="fa fa-car fa-2x"></md-icon>
     <div class="md-list-item-text" layout="column">
-      <h3><b>{{ item.driver.username }}</b></h3>
-      <h4>{{ item.description }}</h4>
+      <h3><b>{{ ::item.driver.username }}</b></h3>
+      <h4>{{ ::item.description }}</h4>
       <h4>Quedan {{ item.free_seats }} lugares</h4>
-      <p>{{ item.when }}</p>
+      <p>{{ ::item.when }}</p>
     </div>
-    <md-button class="md-fab md-mini md-warn" aria-hidden="true" ng-if="item.added && !item.admin" ng-click="vm.removeToTrip()">
+    <md-button class="md-fab md-mini md-warn" aria-label="Bajarse" aria-hidden="true" ng-if="item.added && !item.admin" ng-click="vm.removeToTrip()">
         <md-icon aria-hidden="true" class="fa fa-minus"></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini md-primary" aria-hidden="true" ng-if="!item.added && !item.admin" ng-click="vm.addToTrip()">
+    <md-button class="md-fab md-mini md-primary" aria-label="Sumarse" aria-hidden="true" ng-if="!item.added && !item.admin" ng-click="vm.addToTrip()">
         <md-icon aria-hidden="true" class="fa fa-plus"></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini md-primary edit" aria-hidden="true" ng-if="item.admin" ng-click="vm.editTrip(item)">
+    <md-button class="md-fab md-mini md-primary edit" aria-label="Editar" aria-hidden="true" ng-if="item.admin" ng-click="vm.editTrip(item)">
         <md-icon aria-hidden="true" class="fa fa-pencil"></md-icon>
     </md-button>
 

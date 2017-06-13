@@ -15,6 +15,12 @@ mod.config(['$stateProvider', ($stateProvider) => {
     controller: 'userDetailCtrl',
     controllerAs: 'vm',
   });
+  $stateProvider.state('createUser', {
+    url: '/user',
+    template: require('./views/userDetail.html'),
+    controller: 'userDetailCtrl',
+    controllerAs: 'vm',
+  });
 }]);
 
 module.exports = () => mod.name;

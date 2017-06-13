@@ -3,7 +3,7 @@ const loginUrl = '/user/login';
 
 module.exports = function (mod) {
   mod.factory(serviceName, ['$http', '$q', 'configuration', 'device', function ($http, $q, configuration, device) {
-    const currentUser = {};
+    let currentUser = {};
 
     const checkForloggedUser = () => (
       $http.post(`${configuration.host}${loginUrl}`, {
@@ -22,9 +22,20 @@ module.exports = function (mod) {
     );
     const getCurrentUser = () => currentUser;
 
+    const logout = () => {
+      currentUser = {};
+    };
+
+    const validateCode = (code) => {
+      // TODO
+    };
+
     return {
       checkForloggedUser,
       getCurrentUser,
+      validateCode,
+      currentUser,
+      logout,
     };
   }]);
   return serviceName;
