@@ -4,32 +4,44 @@ module.exports = function (mod) {
   mod.controller(controllerName, ['$mdDialog', 'carPolSvc', 'loadingSvc', '$state', function ($mdDialog, carPolSvc, loadingSvc, $state) {
     this.journeys = [];
 
-    this.addToTrip = (ev) => {
+    this.addToTrip = (journey) => {
       // Appending dialog to document.body to cover sidenav in docs app
       const confirm = $mdDialog.confirm()
         .title('Estas por agregarte a un viaje')
         .textContent('¿Deseas continuar?')
         .ariaLabel('Conrifmar')
-        .targetEvent(ev)
         .ok('Confirmar')
         .cancel('Cancelar');
       $mdDialog.show(confirm).then(() => {
         // confirm
+        loadingSvc.show();
+        carPolSvc.addToJourney(journey).then(() => {
+          journey.added = true;
+          journey.free_seats -= 1;
+        }).finally(() => {
+          loadingSvc.hide();
+        });
       }, () => {
         // do nothing
       });
     };
-    this.removeToTrip = (ev) => {
+    this.removeToTrip = (journey) => {
       // Appending dialog to document.body to cover sidenav in docs app
       const confirm = $mdDialog.confirm()
         .title('Estas por bajarte de un viaje')
         .textContent('¿Deseas continuar?')
         .ariaLabel('Conrifmar')
-        .targetEvent(ev)
         .ok('Confirmar')
         .cancel('Cancelar');
       $mdDialog.show(confirm).then(() => {
         // confirm
+        loadingSvc.show();
+        carPolSvc.removeToJourney(journey).then(() => {
+          journey.added = false;
+          journey.free_seats += 1;
+        }).finally(() => {
+          loadingSvc.hide();
+        });
       }, () => {
         // do nothing
       });

@@ -11,6 +11,7 @@ module.exports = function (mod) {
       );
 
     this.date_time = new Date();
+    this.from_to = 'TO';
 
     this.newEntry = !$stateParams.journey;
 

@@ -5,7 +5,14 @@
   }">
     <md-icon
       aria-hidden="true"
-      class="fa fa-car fa-2x"></md-icon>
+      class="fa fa-car fa-2x">
+        <md-icon
+      aria-hidden="true"
+      class="fa fa-2x" ng-class="{
+        'fa-arrow-right': item.from_to === 'TO',
+        'fa-arrow-left': item.from_to === 'FROM',
+      }"></md-icon>
+    </md-icon>
     <div class="md-list-item-text" layout="column">
       <h3><b>{{ ::item.driver.username }}</b></h3>
       <h4>{{ ::item.car_identification }}</h4>
@@ -13,13 +20,13 @@
       <h4>Quedan {{ item.free_seats }} lugares</h4>
       <p>{{ ::item.when }}</p>
     </div>
-    <md-button class="md-fab md-mini md-warn" aria-label="Bajarse" aria-hidden="true" ng-if="item.added && !item.admin" ng-click="vm.removeToTrip()">
-        <md-icon aria-hidden="true" class="fa fa-minus"></md-icon>
+    <md-button class="md-fab md-mini md-warn" aria-label="Bajarse" aria-hidden="true" ng-if="item.added && !item.admin" ng-click="vm.removeToTrip(item)" ng-disabled="item.departure">
+        <md-icon aria-hidden="true" class="fa fa-minus" ></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini md-primary" aria-label="Sumarse" aria-hidden="true" ng-if="!item.added && !item.admin" ng-click="vm.addToTrip()">
+    <md-button class="md-fab md-mini md-primary" aria-label="Sumarse" aria-hidden="true" ng-if="!item.added && !item.admin" ng-click="vm.addToTrip(item)" ng-disabled="item.free_seats == 0 || item.departure">
         <md-icon aria-hidden="true" class="fa fa-plus"></md-icon>
     </md-button>
-    <md-button class="md-fab md-mini md-primary edit" aria-label="Editar" aria-hidden="true" ng-if="item.admin" ng-click="vm.editTrip(item)">
+    <md-button class="md-fab md-mini md-primary edit" aria-label="Editar" aria-hidden="true" ng-if="item.admin" ng-click="vm.editTrip(item)" ng-disabled="item.departure">
         <md-icon aria-hidden="true" class="fa fa-pencil"></md-icon>
     </md-button>
 

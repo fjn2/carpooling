@@ -24,30 +24,39 @@ module.exports = function (mod) {
       return '(+24 hs)';
     }
 
+    function formatJourney ({ car_identification, description, from_to, driver, date_time, free_seats, total_seats, users, _id }) {
+      let added = false;
+      const journeyTime = new Date(date_time);
+      let when = `${journeyTime.getDate()} / ${journeyTime.getMonth() + 1} / ${journeyTime.getFullYear()} ${journeyTime.getHours()}:${('0' + journeyTime.getMinutes()).slice(-2)} `;
+
+      when += getPendingTime(journeyTime);
+
+      users.forEach((user) => {
+        if (user._id === loginSvc.getCurrentUser()._id) {
+          added = true;
+        }
+      });
+
+      return {
+        car_identification,
+        description,
+        from_to,
+        driver,
+        date_time,
+        free_seats,
+        total_seats,
+        users,
+        when,
+        _id,
+        departure: new Date() > journeyTime,
+        admin: loginSvc.getCurrentUser()._id === driver._id,
+        added,
+      };
+    }
+
     const get = () => (
       $http.get(`${configuration.host}/journey`).then((resp) => {
-        const journeries = resp.data.map(({ car_identification, description, from_to, driver, date_time, free_seats, total_seats, users, _id }) => {
-          const journeyTime = new Date(date_time);
-          let when = `${journeyTime.getDate()} / ${journeyTime.getMonth() + 1} / ${journeyTime.getFullYear()} ${journeyTime.getHours()}:${('0' + journeyTime.getMinutes()).slice(-2)} `;
-
-          when += getPendingTime(journeyTime);
-
-          return {
-            car_identification,
-            description,
-            from_to,
-            driver,
-            date_time,
-            free_seats,
-            total_seats,
-            users,
-            when,
-            _id,
-            admin: loginSvc.getCurrentUser()._id === driver._id,
-
-            added: !!Math.round(Math.random()),
-          };
-        });
+        const journeries = resp.data.map(formatJourney);
         return journeries;
       })
     );
@@ -81,11 +90,33 @@ module.exports = function (mod) {
 
       });
     };
+
+    const getMyJourneys = () => (
+      $http.get(`${configuration.host}/user/journey`).then((resp) => {
+        const journeries = resp.data.map(formatJourney);
+        return journeries;
+      })
+    );
+
+    const addToJourney = ({ _id }) => {
+      return $http.put(`${configuration.host}/journey/add?_id=${_id}`).then(() => {
+
+      });
+    };
+    const removeToJourney = ({ _id }) => {
+      return $http.delete(`${configuration.host}/journey/remove?_id=${_id}`).then(() => {
+
+      });
+    };
+
     return {
       get,
       saveJourney,
       deleteJourney,
       updateJourney,
+      getMyJourneys,
+      addToJourney,
+      removeToJourney,
     };
   }]);
   return serviceName;
