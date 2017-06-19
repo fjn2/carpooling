@@ -51,6 +51,19 @@ module.exports = function (mod) {
         journey,
       });
     };
+    let refModal;
+    this.showReferences = () => {
+      refModal = $mdDialog.show({
+        templateUrl: '/references.html',
+        controller: ['$scope', '$mdDialog', function($scope, $mdDialog) {
+          $scope.closeReferences = () => {
+            console.log('cerrando');
+            $mdDialog.hide();
+          };
+        }],
+      });
+    };
+
     loadingSvc.show();
     carPolSvc.get().then((journey) => {
       this.journeys = this.journeys.concat(journey);

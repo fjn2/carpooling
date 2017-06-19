@@ -1,4 +1,10 @@
 .car-pool-list {
+  .reference {
+    color: blue;
+    right: 0;
+    position: absolute;
+    top: 0;
+  }
   md-list-item {
     padding-right: 0;
 
@@ -23,6 +29,16 @@
           color: green;
         }
       }
+    }
+  }
+}
+.reference-dialog {
+  ul {
+    padding-left: 0;
+
+    li {
+      padding-left: 0;
+      list-style: none;
     }
   }
 }

@@ -42,6 +42,14 @@ module.exports = function (mod) {
         $mdDialog.show(alert).then(() => {
           $state.go('login');
         });
+      }, (resp) => {
+        const alert = $mdDialog.alert()
+          .title('Error')
+          .textContent(resp.data.message)
+          .ariaLabel('Aceptar')
+          .ok('Aceptar');
+
+          $mdDialog.show(alert);
       });
     };
     this.cancel = () => {

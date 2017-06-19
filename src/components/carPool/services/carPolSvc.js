@@ -24,7 +24,7 @@ module.exports = function (mod) {
       return '(+24 hs)';
     }
 
-    function formatJourney ({ car_identification, description, from_to, driver, date_time, free_seats, total_seats, users, _id }) {
+    function formatJourney ({ car_identification, description, from_to, driver, date_time, free_seats, total_seats, users, _id, flexible_time }) {
       let added = false;
       const journeyTime = new Date(date_time);
       let when = `${journeyTime.getDate()} / ${journeyTime.getMonth() + 1} / ${journeyTime.getFullYear()} ${journeyTime.getHours()}:${('0' + journeyTime.getMinutes()).slice(-2)} `;
@@ -48,6 +48,7 @@ module.exports = function (mod) {
         users,
         when,
         _id,
+        flexible_time,
         departure: new Date() > journeyTime,
         admin: loginSvc.getCurrentUser()._id === driver._id,
         added,
@@ -60,7 +61,7 @@ module.exports = function (mod) {
         return journeries;
       })
     );
-    const saveJourney = ({ car_identification, description, from_to, date_time, total_seats }) => {
+    const saveJourney = ({ car_identification, description, from_to, date_time, total_seats, flexible_time }) => {
 
       return $http.post(`${configuration.host}/journey`, {
         car_identification,
@@ -69,11 +70,12 @@ module.exports = function (mod) {
         driver: loginSvc.getCurrentUser(),
         date_time,
         total_seats,
+        flexible_time,
       }).then(() => {
 
       });
     };
-    const updateJourney = ({ car_identification, description, from_to, date_time, total_seats, _id }) => {
+    const updateJourney = ({ car_identification, description, from_to, date_time, total_seats, _id, flexible_time }) => {
       return $http.put(`${configuration.host}/journey?_id=${_id}`, {
         car_identification,
         description,
@@ -81,6 +83,7 @@ module.exports = function (mod) {
         driver: loginSvc.getCurrentUser(),
         date_time,
         total_seats,
+        flexible_time,
       }).then(() => {
 
       });

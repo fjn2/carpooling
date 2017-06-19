@@ -18,7 +18,7 @@
     </md-input-container>
     <md-input-container class="md-block">
       <label>Teléfono</label>
-      <input md-maxlength="15" required md-no-asterisk name="phone" ng-model="vm.phone">
+      <input md-maxlength="30" required md-no-asterisk name="phone" ng-model="vm.phone">
       <div ng-messages="userDetailForm.phone.$error">
         <div ng-message="required">Este campo es requerido.</div>
         <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
@@ -26,7 +26,7 @@
     </md-input-container>
     <md-input-container class="md-block">
       <label>Mail</label>
-      <input md-maxlength="20" required md-no-asterisk name="mail" ng-model="vm.mail" type="email">
+      <input md-maxlength="40" required md-no-asterisk name="mail" ng-model="vm.mail" type="email">
       <div ng-messages="userDetailForm.mail.$error">
         <div ng-message="required">Este campo es requerido.</div>
       </div>

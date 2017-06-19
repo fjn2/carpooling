@@ -1,21 +1,24 @@
 const serviceName = 'loginSvc';
-const loginUrl = '/user/login';
 
 module.exports = function (mod) {
   mod.factory(serviceName, ['$http', '$q', 'configuration', 'device', function ($http, $q, configuration, device) {
     let currentUser = {};
 
     const checkForloggedUser = () => (
-      $http.post(`${configuration.host}${loginUrl}`, {
+      $http.post(`${configuration.host}/user/login`, {
         device: device.uuid,
       }).then((resp) => {
-        Object.assign(currentUser, {
-          _id: resp.data[0]._id,
-          username: resp.data[0].username,
-          mail: resp.data[0].mail,
-          phone: resp.data[0].phone,
-          neighborhood: resp.data[0].neighborhood,
-        });
+        if (resp.data) {
+          Object.assign(currentUser, {
+            _id: resp.data._id,
+            username: resp.data.username,
+            mail: resp.data.mail,
+            phone: resp.data.phone,
+            neighborhood: resp.data.neighborhood,
+          });
+        } else {
+          console.error('checkForloggedUser got empty user');
+        }
         // store the information of the user
         return resp.data[0];
       }, $q.reject)
@@ -24,11 +27,18 @@ module.exports = function (mod) {
 
     const logout = () => {
       currentUser = {};
+      return $http.post(`${configuration.host}/user/logout`, {});
     };
 
-    const validateCode = (code) => {
-      // TODO
-    };
+    const validateCode = registration_code => (
+      $http.post(`${configuration.host}/user/validate`, {
+        registration_code,
+      })
+    );
+    const sendCodeAgain = () => (
+      $http.get(`${configuration.host}/user/send/code`)
+    );
+
 
     return {
       checkForloggedUser,
@@ -36,6 +46,7 @@ module.exports = function (mod) {
       validateCode,
       currentUser,
       logout,
+      sendCodeAgain,
     };
   }]);
   return serviceName;

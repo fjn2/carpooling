@@ -31,10 +31,24 @@ app.constant('configuration', {
 app.config(['$urlRouterProvider', ($urlRouterProvider) => {
   $urlRouterProvider.otherwise('/login');
 }]);
-app.run(['$state', 'loginSvc', ($state, loginSvc) => {
+app.run(['$state', 'loginSvc', '$mdDialog', '$window', ($state, loginSvc, $mdDialog, $window) => {
   loginSvc.checkForloggedUser().then(() => {
-    $state.go('app.carPoolList');
-  }, () => {
+    $state.go('app.carPoolList', {}, {
+      location: 'replace',
+    });
+  }, (err) => {
+    if (err.status === -1) {
+      // there is no internet conection
+      const alert = $mdDialog.alert()
+        .title('No pudimos conectarnos con el servidor')
+        .textContent('Vuelva a intentarlo más tarde')
+        .ariaLabel('Reintentar')
+        .ok('Reintentar');
+
+      $mdDialog.show(alert).then(() => {
+        $window.location.reload();
+      });
+    }
     $state.go('login');
   }).finally(() => {
     if (window.navigator.splashscreen) {

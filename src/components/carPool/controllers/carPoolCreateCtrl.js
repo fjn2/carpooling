@@ -12,6 +12,7 @@ module.exports = function (mod) {
 
     this.date_time = new Date();
     this.from_to = 'TO';
+    this.flexible_time = false;
 
     this.newEntry = !$stateParams.journey;
 
@@ -20,6 +21,7 @@ module.exports = function (mod) {
         car_identification: $stateParams.journey.car_identification,
         description: $stateParams.journey.description,
         from_to: $stateParams.journey.from_to,
+        flexible_time: $stateParams.journey.flexible_time,
         total_seats: $stateParams.journey.total_seats,
         date_time: new Date($stateParams.journey.date_time),
         _id: $stateParams.journey._id,
@@ -91,7 +93,9 @@ module.exports = function (mod) {
       $mdDialog.show(confirm).then(() => {
         loadingSvc.show();
 
-        carPolSvc.deleteJourney(this).finally(() => {
+        carPolSvc.deleteJourney(this).then(() => {
+          $state.go('app.carPoolList');
+        }).finally(() => {
           loadingSvc.hide();
         });
       }, () => {

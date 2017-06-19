@@ -15,6 +15,11 @@
       </div>
     </md-input-container>
     <md-input-container class="md-block">
+      <md-switch md-invert class="md-primary" md-no-ink aria-label="Horario flexible" ng-model="vm.flexible_time" ng-true-value="true" ng-false-value="false">
+        ¿Es un horario flexible? (+/- 15')
+      </md-switch>
+    </md-input-container>
+    <md-input-container class="md-block">
       <md-switch md-invert class="md-primary" md-no-ink aria-label="Salis de Abril" ng-model="vm.from_to" ng-true-value="'FROM'" ng-false-value="'TO'">
         ¿Salis de Abril?
       </md-switch>
