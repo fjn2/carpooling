@@ -7,7 +7,7 @@ module.exports = function (mod) {
     this.maxDate = new Date(
       this.minDate.getFullYear(),
       this.minDate.getMonth(),
-      this.minDate.getDate() + 10,
+      this.minDate.getDate() + 10
       );
 
     this.date_time = new Date();
@@ -24,15 +24,15 @@ module.exports = function (mod) {
         flexible_time: $stateParams.journey.flexible_time,
         total_seats: $stateParams.journey.total_seats,
         date_time: new Date($stateParams.journey.date_time),
-        _id: $stateParams.journey._id,
+        _id: $stateParams.journey._id
       });
     }
 
     this.save = () => {
       if (this.newEntry) {
         const confirm = $mdDialog.confirm()
-          .title('Estas por crear un nuevo viaje')
-          .textContent('¿Confirma la operación?')
+          .title('Estás por crear un nuevo viaje')
+          .textContent('')
           .ariaLabel('Conrifmar')
           .ok('Confirmar')
           .cancel('Cancelar');
@@ -57,8 +57,7 @@ module.exports = function (mod) {
         });
       } else {
         const confirm = $mdDialog.confirm()
-          .title('Estas por modificar un viaje')
-          .textContent('¿Confirma la operación?')
+          .title('Estás por modificar un viaje')
           .ariaLabel('Conrifmar')
           .ok('Confirmar')
           .cancel('Cancelar');
@@ -85,8 +84,7 @@ module.exports = function (mod) {
     };
     this.delete = () => {
       const confirm = $mdDialog.confirm()
-        .title('Estas por eliminar este viaje')
-        .textContent('¿Confirma la operación?')
+        .title('Estás por eliminar este viaje')
         .ariaLabel('Conrifmar')
         .ok('Confirmar')
         .cancel('Cancelar');
@@ -105,9 +103,9 @@ module.exports = function (mod) {
 
     $scope.$watch('vm.from_to', () => {
       if (this.from_to === 'FROM') {
-        this.descriptionLabel = '¿A donde vas?';
+        this.descriptionLabel = '¿A dónde vas? ¿Por dónde?';
       } else {
-        this.descriptionLabel = '¿Desde donde venis?';
+        this.descriptionLabel = '¿Desde dónde venís? ¿Por dónde?';
       }
     });
   }]);

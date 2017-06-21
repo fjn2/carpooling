@@ -16,8 +16,8 @@ module.exports = (mod) => {
     };
     this.logout = () => {
       const confirm = $mdDialog.confirm()
-        .title('Estas por salir de la applicación')
-        .textContent('Si lo haces, tu usuario será desactivado y tendras que pedir acceso para entrar nuevamente')
+        .title('Estas por salir de la aplicación')
+        .textContent('Si lo haces, tendrás que ingresar tu código de ingreso nuevamente')
         .ariaLabel('Salir')
         .ok('Salir')
         .cancel('Cancelar');

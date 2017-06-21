@@ -16,10 +16,10 @@ module.exports = () => {
     $stateProvider.state('app', {
       template: require('./views/main.html'),
       controller: 'sideMenuCtrl',
-      controllerAs: 'vm',
+      controllerAs: 'vm'
     });
     $stateProvider.state('app.contactUs', {
-      template: require('./views/contactUs.html'),
+      template: require('./views/contactUs.html')
     });
   }]);
 

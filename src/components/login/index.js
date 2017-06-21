@@ -15,7 +15,7 @@ mod.config(['$stateProvider', ($stateProvider) => {
     url: '/login',
     template: require('./views/login.html'),
     controller: 'loginCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'vm'
   });
 }]);
 

@@ -1,11 +1,11 @@
 <md-content layout-padding>
   <form name="userDetailForm">
     <md-input-container class="md-block">
-      <label>Nombre de usuario</label>
-      <input md-maxlength="12" required md-no-asterisk name="nickname" ng-model="vm.username">
+      <label>Nombre y Apellido</label>
+      <input md-maxlength="30" required md-no-asterisk name="nickname" ng-model="vm.username">
       <div ng-messages="userDetailForm.nickname.$error">
         <div ng-message="required">Este campo es requerido.</div>
-        <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+        <div ng-message="md-maxlength">El texto es muy largo. Respetá el largo máximo</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
@@ -13,7 +13,7 @@
       <input md-maxlength="30" required md-no-asterisk name="neighborhood" ng-model="vm.neighborhood">
       <div ng-messages="userDetailForm.neighborhood.$error">
         <div ng-message="required">Este campo es requerido.</div>
-        <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+        <div ng-message="md-maxlength">El texto es muy largo. Respetá el largo máximo</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
@@ -21,7 +21,7 @@
       <input md-maxlength="30" required md-no-asterisk name="phone" ng-model="vm.phone">
       <div ng-messages="userDetailForm.phone.$error">
         <div ng-message="required">Este campo es requerido.</div>
-        <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+        <div ng-message="md-maxlength">El texto es muy largo. Respetá el largo máximo</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">

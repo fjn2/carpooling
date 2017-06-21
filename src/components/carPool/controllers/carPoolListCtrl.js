@@ -48,7 +48,7 @@ module.exports = function (mod) {
     };
     this.editTrip = (journey) => {
       $state.go('app.carPoolCreate', {
-        journey,
+        journey
       });
     };
     let refModal;
@@ -60,7 +60,7 @@ module.exports = function (mod) {
             console.log('cerrando');
             $mdDialog.hide();
           };
-        }],
+        }]
       });
     };
 

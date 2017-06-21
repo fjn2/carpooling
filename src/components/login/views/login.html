@@ -1,11 +1,11 @@
 <div layout="row" layout-align="center center" layout-fill class="login">
   <div layout="column">
     <md-input-container>
-      <label>Codigo</label>
+      <label>Código</label>
       <input ng-model="vm.code" type="number" maxlength="6" class="code-input">
     </md-input-container>
     <md-button class="md-raised md-primary" ng-click="vm.login()">Ingresá con tu código</md-button>
-    <md-button class="md-raised md-warn" ng-click="vm.requestAccess()">O pedi acceso</md-button>
+    <md-button class="md-raised md-warn" ng-click="vm.requestAccess()">No tengo código</md-button>
     <md-button class="md-raised" ng-click="vm.sendCodeAgain()">Reenviar código</md-button>
   </div>
 </div>

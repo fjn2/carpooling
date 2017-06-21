@@ -9,5 +9,6 @@
   "rules": {
     "global-require": "off",
     "func-names": "off",
+    "comma-dangle": ["error", "never"]
   }
 }

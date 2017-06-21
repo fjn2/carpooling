@@ -1,14 +1,14 @@
 <md-content layout-padding>
   <form name="createPoolForm">
     <md-input-container class="md-block">
-      <label>Caracteristicas del vehículo</label>
+      <label>Color y marca del vehículo</label>
       <input md-maxlength="30" required md-no-asterisk name="car_identification" ng-model="vm.car_identification" type="text">
       <div ng-messages="createPoolForm.car_identification.$error">
         <div ng-message="required">Este campo es requerido.</div>
       </div>
     </md-input-container>
     <md-input-container class="md-block">
-      <label>¿Cuando?</label>
+      <label>¿Cuándo?</label>
       <input type="datetime-local" name="date_time" ng-model="vm.date_time" min="{{vm.minDate | date:'yyyy-MM-ddTHH:mm:ss'}}" max="{{vm.maxDate | date:'yyyy-MM-ddTHH:mm:ss'}}" required />
       <div ng-messages="createPoolForm.date_time.$error">
         <div ng-message="required">Este campo es requerido.</div>
@@ -21,12 +21,12 @@
     </md-input-container>
     <md-input-container class="md-block">
       <md-switch md-invert class="md-primary" md-no-ink aria-label="Salis de Abril" ng-model="vm.from_to" ng-true-value="'FROM'" ng-false-value="'TO'">
-        ¿Salis de Abril?
+        ¿Salís desde Abril?
       </md-switch>
     </md-input-container>
     <md-input-container class="md-block">
       <label>{{vm.descriptionLabel}}</label>
-      <input md-maxlength="30" required md-no-asterisk name="description" ng-model="vm.description" type="text">
+      <input md-maxlength="50" required md-no-asterisk name="description" ng-model="vm.description" type="text">
       <div ng-messages="createPoolForm.description.$error">
         <div ng-message="required">Este campo es requerido.</div>
       </div>

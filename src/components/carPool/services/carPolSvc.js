@@ -51,7 +51,7 @@ module.exports = function (mod) {
         flexible_time,
         departure: new Date() > journeyTime,
         admin: loginSvc.getCurrentUser()._id === driver._id,
-        added,
+        added
       };
     }
 
@@ -70,7 +70,7 @@ module.exports = function (mod) {
         driver: loginSvc.getCurrentUser(),
         date_time,
         total_seats,
-        flexible_time,
+        flexible_time
       }).then(() => {
 
       });
@@ -83,7 +83,7 @@ module.exports = function (mod) {
         driver: loginSvc.getCurrentUser(),
         date_time,
         total_seats,
-        flexible_time,
+        flexible_time
       }).then(() => {
 
       });
@@ -119,7 +119,7 @@ module.exports = function (mod) {
       updateJourney,
       getMyJourneys,
       addToJourney,
-      removeToJourney,
+      removeToJourney
     };
   }]);
   return serviceName;

@@ -20,12 +20,12 @@ const app = angular.module('app', [
   require('./components/sideMenu')(),
   require('./components/carPool')(),
   require('./components/settings')(),
-  require('./components/user')(),
+  require('./components/user')()
 ]);
 
 app.constant('configuration', {
   host: 'http://54.173.70.135:8081',
-  testDeviceId,
+  testDeviceId
 });
 
 app.config(['$urlRouterProvider', ($urlRouterProvider) => {
@@ -34,7 +34,7 @@ app.config(['$urlRouterProvider', ($urlRouterProvider) => {
 app.run(['$state', 'loginSvc', '$mdDialog', '$window', ($state, loginSvc, $mdDialog, $window) => {
   loginSvc.checkForloggedUser().then(() => {
     $state.go('app.carPoolList', {}, {
-      location: 'replace',
+      location: 'replace'
     });
   }, (err) => {
     if (err.status === -1) {
@@ -65,7 +65,7 @@ app.run(['$state', 'loginSvc', '$mdDialog', '$window', ($state, loginSvc, $mdDia
 function onDeviceReady() {
   console.log('deviceready');
   app.constant('device', {
-    uuid: (typeof cordova !== 'undefined') ? device.uuid : testDeviceId,
+    uuid: (typeof cordova !== 'undefined') ? device.uuid : testDeviceId
     // uuid: 'sdfsdfsdf',
   });
   angular.bootstrap(window.document, ['app']);

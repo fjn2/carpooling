@@ -6,7 +6,7 @@ module.exports = function (mod) {
 
     const checkForloggedUser = () => (
       $http.post(`${configuration.host}/user/login`, {
-        device: device.uuid,
+        device: device.uuid
       }).then((resp) => {
         if (resp.data) {
           Object.assign(currentUser, {
@@ -14,7 +14,7 @@ module.exports = function (mod) {
             username: resp.data.username,
             mail: resp.data.mail,
             phone: resp.data.phone,
-            neighborhood: resp.data.neighborhood,
+            neighborhood: resp.data.neighborhood
           });
         } else {
           console.error('checkForloggedUser got empty user');
@@ -32,7 +32,7 @@ module.exports = function (mod) {
 
     const validateCode = registration_code => (
       $http.post(`${configuration.host}/user/validate`, {
-        registration_code,
+        registration_code
       })
     );
     const sendCodeAgain = () => (
@@ -46,7 +46,7 @@ module.exports = function (mod) {
       validateCode,
       currentUser,
       logout,
-      sendCodeAgain,
+      sendCodeAgain
     };
   }]);
   return serviceName;

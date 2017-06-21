@@ -8,7 +8,7 @@ module.exports = function (mod) {
         config.headers['VND-device-id'] = device.uuid;
         // do something on success
         return config;
-      },
+      }
     };
   }]);
   mod.config(['$httpProvider', function($httpProvider) {

@@ -2,12 +2,12 @@ const controllerName = 'userDetailCtrl';
 
 module.exports = function (mod) {
   mod.controller(controllerName, ['loginSvc', '$scope', '$mdDialog', 'userSvc', '$state', function (loginSvc, $scope, $mdDialog, userSvc, $state) {
-    let {
+    const {
       _id,
       username,
       mail,
       phone,
-      neighborhood,
+      neighborhood
     } = loginSvc.getCurrentUser();
 
     Object.assign(this, {
@@ -15,14 +15,14 @@ module.exports = function (mod) {
       username,
       mail,
       phone,
-      neighborhood,
+      neighborhood
     });
 
     this.update = () => {
       userSvc.update(this).then(() => {
         const alert = $mdDialog.alert()
-          .title('Operación exitosa')
-          .textContent('Tus cambios se encuentran guardados en el servidor')
+          .title('¡Operación exitosa!')
+          .textContent('Tus cambios han sido guardados')
           .ariaLabel('Aceptar')
           .ok('Aceptar');
 
@@ -35,7 +35,7 @@ module.exports = function (mod) {
       userSvc.create(this).then(() => {
         const alert = $mdDialog.alert()
           .title('Operación exitosa')
-          .textContent('Enviamos tus datos a nuestros moderadores los cuales certificaran los datos ingresados y te darán aceso a la applicacion lo antes posible.')
+          .textContent('Enviamos tus datos a nuestros moderadores los cuales certificarán los datos ingresados y te darán aceso a la aplicación lo antes posible. Aguardá por el email con el código de ingreso')
           .ariaLabel('Aceptar')
           .ok('Aceptar');
 

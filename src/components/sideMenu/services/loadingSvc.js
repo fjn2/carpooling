@@ -15,7 +15,7 @@ module.exports = function (mod) {
     return {
       show,
       hide,
-      getState,
+      getState
     };
   }]);
   return serviceName;

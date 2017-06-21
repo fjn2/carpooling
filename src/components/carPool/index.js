@@ -16,22 +16,22 @@ mod.config(['$stateProvider', ($stateProvider) => {
     url: '/carPoolList',
     template: require('./views/carPoolList.html'),
     controller: 'carPoolListCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'vm'
   });
   $stateProvider.state('app.carPoolCreate', {
     url: '/carPoolCreate',
     params: {
-      journey: undefined,
+      journey: undefined
     },
     template: require('./views/carPoolCreate.html'),
     controller: 'carPoolCreateCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'vm'
   });
   $stateProvider.state('app.myJourneys', {
     url: '/myJourneys',
     template: require('./views/carPoolList.html'),
     controller: 'myJourneysCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'vm'
   });
 
 }]);

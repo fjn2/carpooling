@@ -7,32 +7,32 @@ module.exports = function (mod) {
       username,
       mail,
       phone,
-      neighborhood,
+      neighborhood
     }) => (
       $http.put(`${configuration.host}/user?_id=${_id}`, {
         username,
         mail,
         phone,
-        neighborhood,
+        neighborhood
       })
     );
     const create = ({
       username,
       mail,
       phone,
-      neighborhood,
+      neighborhood
     }) => (
       $http.post(`${configuration.host}/user`, {
         username,
         mail,
         phone,
         neighborhood,
-        device: device.uuid,
+        device: device.uuid
       })
     );
     return {
       update,
-      create,
+      create
     };
   }]);
   return serviceName;

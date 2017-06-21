@@ -11,7 +11,7 @@ mod.config(['$stateProvider', ($stateProvider) => {
     url: '/settings',
     template: require('./views/settings.html'),
     controller: 'settingsCtrl',
-    controllerAs: 'vm',
+    controllerAs: 'vm'
   });
 }]);
 

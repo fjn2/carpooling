@@ -28,7 +28,7 @@ module.exports = function (mod) {
     };
     this.editTrip = (journey) => {
       $state.go('app.carPoolCreate', {
-        journey,
+        journey
       });
     };
     loadingSvc.show();
