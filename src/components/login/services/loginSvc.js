@@ -36,7 +36,7 @@ module.exports = function (mod) {
       })
     );
     const sendCodeAgain = () => (
-      $http.get(`${configuration.host}/user/send/code`)
+      $http.post(`${configuration.host}/user/send/code`)
     );
 
 

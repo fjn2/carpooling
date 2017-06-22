@@ -35,7 +35,7 @@ module.exports = function (mod) {
       userSvc.create(this).then(() => {
         const alert = $mdDialog.alert()
           .title('Operación exitosa')
-          .textContent('Enviamos tus datos a nuestros moderadores los cuales certificarán los datos ingresados y te darán aceso a la aplicación lo antes posible. Aguardá por el email con el código de ingreso')
+          .textContent('Luego de verificar tus datos te enviaremos un código de acceso a tu mail')
           .ariaLabel('Aceptar')
           .ok('Aceptar');
 
